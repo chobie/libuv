@@ -78,7 +78,7 @@ int uv_mutex_trylock(uv_mutex_t* mutex) {
 
   r = pthread_mutex_trylock(mutex);
 
-  if (r && r != EAGAIN)
+  if (r && (r != EDEADLK && r != EBUSY && r != EAGAIN))
     abort();
 
   if (r)
