@@ -39,6 +39,8 @@ TEST_IMPL(thread_mutex) {
   ASSERT(r == 0);
 
   uv_mutex_lock(&mutex);
+  r = uv_mutex_trylock(&mutex);
+  ASSERT(r == -1);
   uv_mutex_unlock(&mutex);
   uv_mutex_destroy(&mutex);
 
